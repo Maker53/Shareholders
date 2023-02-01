@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<device id="retina5_5" orientation="portrait">
+<adaptation id="fullscreen"/>
+</device>
+<dependencies>
+<deployment identifier="iOS"/>
+<plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+<capability name="Safe area layout guides" minToolsVersion="9.0"/>
+<capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+</dependencies>
+<scenes>
+<!--View Controller-->
+<scene sceneID="EHf-IW-A2E">
+<objects>
+<viewController id="01J-lp-oVM" sceneMemberID="viewController">
+<view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+<rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+<autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+<subviews>
+<imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="petrov_splash" translatesAutoresizingMaskIntoConstraints="NO" id="tKK-cc-PtJ" userLabel="petrovImage">
+<rect key="frame" x="-69" y="0.0" width="552" height="736"/>
+<constraints>
+<constraint firstAttribute="width" secondItem="tKK-cc-PtJ" secondAttribute="height" multiplier="3:4" id="9uk-e1-vIq"/>
+</constraints>
+</imageView>
+<imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="a_class_bank" translatesAutoresizingMaskIntoConstraints="NO" id="Uon-Jw-2WO">
+<rect key="frame" x="82.666666666666671" y="56" width="248.66666666666663" height="49.666666666666657"/>
+<constraints>
+<constraint firstAttribute="width" secondItem="Uon-Jw-2WO" secondAttribute="height" multiplier="5:1" id="kzz-0D-IUP"/>
+</constraints>
+</imageView>
+</subviews>
+<color key="backgroundColor" red="0.93725490196078431" green="0.19215686274509802" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
+<constraints>
+<constraint firstItem="tKK-cc-PtJ" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="3bC-Td-Ncv"/>
+<constraint firstItem="Uon-Jw-2WO" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="9S9-3y-kyI"/>
+<constraint firstItem="Uon-Jw-2WO" firstAttribute="width" secondItem="tKK-cc-PtJ" secondAttribute="width" multiplier="0.45" id="FMa-rj-1mU"/>
+<constraint firstItem="tKK-cc-PtJ" firstAttribute="bottom" secondItem="Ze5-6b-2t3" secondAttribute="bottom" id="L7I-GJ-7MA"/>
+<constraint firstItem="Uon-Jw-2WO" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" multiplier="0.22" id="dOj-Wz-IUU"/>
+<constraint firstItem="tKK-cc-PtJ" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="nnj-j1-3Zr"/>
+</constraints>
+<viewLayoutGuide key="safeArea" id="FSg-9e-zlT"/>
+</view>
+</viewController>
+<placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+</objects>
+<point key="canvasLocation" x="50.724637681159422" y="374.18478260869568"/>
+</scene>
+</scenes>
+<resources>
+<image name="a_class_bank" width="1000" height="200"/>
+<image name="petrov_splash" width="1024" height="1366"/>
+</resources>
+</document>

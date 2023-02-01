@@ -1,0 +1,101 @@
+"Installment.Empty.Subtitle" = "График платежей появится\nв течение пяти дней после первой\nпокупки.";
+"Installment.Empty.Title" = "Совершённых покупок нет";
+"Installment.NextPayment" = "Следующий платёж";
+"Installment.PurchaseDate" = "Дата покупки";
+"Installment.PurchaseSum" = "Сумма покупки";
+"Installment.RemainingSum" = "Осталось погасить";
+"Installment.TermInMonth" = "Срок рассрочки";
+"Installment.Title" = "График платежей";
+
+// MARK: - InstalmentList
+
+"InstalmentList.Title" = "Рассрочки";
+"InstalmentList.NextPayment" = "Следующий платёж";
+"InstalmentList.NextPayment.Before" = "До %@, %@";
+"InstalmentList.RemainsToPay"= "Осталось выплатить";
+"InstalmentList.Accessibility.NewInstalment" = "Новая рассрочка";
+"InstalmentList.EmptyState.Titles.WithAnyOffer" = "Подключите рассрочку";
+"InstalmentList.EmptyState.Titles.WithoutOffers" = "Пока нет предложений для вас";
+
+"InstalmentList.EmptyState.Subtitles.CreditAndDebitOffers" = "Чтобы обновить льготный период по кредитной карте или получить деньги на любые траты без процентов";
+"InstalmentList.EmptyState.Subtitles.OnlyCreditOffer" = "Льготный период по кредитной карте начнётся заново, и никаких процентов";
+"InstalmentList.EmptyState.Subtitles.OnlyDebitOffer" = "Деньги сразу придут на карту — сможете потратить на что угодно, а возвращать без процентов";
+"InstalmentList.EmptyState.Subtitles.WithoutOffers" = "Пришлём пуш-уведомление или смс, когда появятся выгодные предложения по рассрочке";
+"InstalmentList.EmptyState.NewInstalmentButtonTitle" = "Подключить";
+"InstalmentList.EmptyState.UnderstandButtonTitle" = "Понятно";
+
+"InstalmentList.Error.Network.Title" = "Ошибка соединения";
+"InstalmentList.Error.Network.Subtitle" = "Кажется, у вас нет сети";
+
+"InstalmentList.threeMonth" = "3 месяца";
+"InstalmentList.sixMonth" = "6 месяцев";
+"InstalmentList.nineMonth" = "9 месяцев";
+"InstalmentList.oneYear" = "1 год";
+"InstalmentList.twoYears" = "2 года";
+"InstalmentList.threeYears" = "3 года";
+
+"InstalmentList.threeMonthShort" = "3 мес.";
+"InstalmentList.sixMonthShort" = "6 мес.";
+"InstalmentList.nineMonthShort" = "9 мес.";
+
+"InstalmentList.CreditSection.title" = "Рассрочки кредитных карт";
+"InstalmentList.DebitSection.title" = "Деньги в рассрочку";
+"InstalmentList.PaymentSum.title" = "Сумма платежей в месяц";
+
+// MARK: - InstalmentDetail
+
+"Installments.InstalmentDetail.Title" = "Рассрочка";
+"Installments.InstalmentDetail.PaymentAmount" = "Сумма платежа";
+"Installments.InstalmentDetail.PaymentDate" = "Внесите платёж до";
+"Installments.InstalmentDetail.LastPaymentDate" = "Дата окончания рассрочки";
+"Installments.InstalmentDetail.CardAccountTitle" = "Куда вносить платёж";
+"Installments.InstalmentDetail.PayEarlyButton" = "Погасить досрочно";
+"Installments.InstalmentDetail.CardDebt" = "Долг по кредитной карте";
+"Installments.InstalmentDetail.EarlyPaymentInfo" = "Как внести досрочный платёж";
+"Installments.InstalmentDetail.EarlyPaymentBannerDebt" = "Чтобы внести досрочный платёж,  погасите весь долг по кредитной карте";
+"Installments.InstalmentDetail.EarlyPaymentBannerProcessing" = "Ваш платёж будет обработан в течение дня — после этого сможете внести новый";
+"Installments.InstalmentDetail.EarlyPaymentBannerNoFunds" = "Не хватает денег на кредитном счёте, чтобы списать досрочный платёж";
+"Installments.InstalmentDetail.InfoDialog.Title" = "Как внести досрочный платёж";
+"Installments.InstalmentDetail.InfoDialog.Subtitle" = "1. Сначала погасите всю задолженность по кредитной карте.\n\n2. Затем пополните карту на сумму, которой хотите погасить рассрочку.\n\n3. После этого зайдите в рассрочку и нажмите «Погасить досрочно».";
+"Installments.InstalmentDetail.InfoDialog.PrimaryButtonTitle" = "Погасить";
+"Installments.InstalmentDetail.InfoDialog.SecondaryButtonTitle" = "Закрыть";
+
+"Installments.InstalmentDetail.DebitDialog.title" = "Как погасить рассрочку раньше";
+"Installments.InstalmentDetail.DebitDialog.subtitle" = "Просто переведите на счёт дебетовой рассрочки сумму, необходимую для погашения.";
+"Installments.InstalmentDetail.DebitDialog.severalInstallmentsSubtitle" = "Переведите сумму погашения на счёт дебетовой рассрочки.
+Если у вас две рассрочки с ежемесячными платежами — сумма погасит тот, что больше.";
+"Installments.InstalmentDetail.DebitDialog.buttonTitle" = "Погасить";
+"Installments.InstalmentDetail.CancelBanner.text" = "Если передумали — бесплатно отмените рассрочку сегодня до 23:00 (МСК)";
+"Installments.InstalmentDetail.CancelBanner.buttonTitle" = "Отменить рассрочку";
+
+// MARK: - SelectNewInstallmentType
+
+"InstalmentList.SelectNewInstallmentType.CancelAction" = "Отмена";
+"InstalmentList.SelectNewInstallmentType.CreditInstallmentAction" = "Рассрочка кредитной карты";
+"InstalmentList.SelectNewInstallmentType.DebitInstallmentAction" = "Деньги в рассрочку";
+
+// MARK: - Common
+
+"Common.SomethingWentWrong" = "Что-то пошло не так";
+"Common.emailTitle" = "Куда прислать документы?";
+"Common.emailPlaceholer" = "Ваш email";
+"Common.EmailError.emptyEmail" = "Введите ваш email";
+"Common.EmailError.invalidEmail" = "Введён некорректный email";
+
+// MARK: - CancelInstallment
+
+"CancelInstallment.title" = "Рассрочку\U00A0можно отменить";
+"CancelInstallment.buttonTitle" = "Отменить рассрочку";
+"CancelInstallment.cancelTimeText" = "Сегодня до 23:00 по московскому времени.";
+"CancelInstallment.comissionText" = "Вернём комиссию";
+"CancelInstallment.cancelInfoText" = "После отмены рассрочки вернётся задолженность и старый льготный период по кредитке";
+"CancelInstallment.cancelDocumentTitle" = "Заявление на отмену рассрочки";
+"CancelInstallment.cancelTimeTitle" = "Сегодня до\U00A023:00\U00A0по\U00A0московскому времени.";
+"CancelInstallment.cancelRedText" = "После отмены рассрочки вернётся задолженность и старый льготный период по кредитке";
+"CancelInstallment.documentsTitle" = "Документы";
+"CancelInstallment.ResultScreen.title" = "Рассрочка отменена";
+"CancelInstallment.ResultScreen.text" = "Комиссия за рассрочку вернётся обратно на счёт, а у кредитки активируется старый льготный период.";
+"CancelInstallment.ResultScreen.buttonTitle" = "К списку рассрочек";
+"CancelInstallment.EmptyState.title" = "Что-то сломалось";
+"CancelInstallment.EmptyState.subtitle" = "Попробуйте ещё раз — скорее всего, всё уже заработало";
+"CancelInstallment.EmptyState.buttonTitle" = "Попробовать ещё раз";

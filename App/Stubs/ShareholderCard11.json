@@ -1,0 +1,11 @@
+{
+    "id": "11",
+    "imageURL": "https://online.alfabank.ru/cards-images/cards/RL/images?width=560",
+    "maskedNumber": "5559 49·· ···· 1234",
+    "type": "MIR",
+    "amount": {
+        "value": 123123,
+        "currency": "RUR",
+        "minorUnits": 100
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "id": "22",
+    "imageURL": "https://online.alfabank.ru/cards-images/cards/V0/images?width=560",
+    "maskedNumber": "5559 49·· ···· 1705",
+    "type": "MC",
+    "amount": {
+        "value": 754358882,
+        "currency": "RUR",
+        "minorUnits": 100
+    }
+}

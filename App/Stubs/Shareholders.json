@@ -1,0 +1,40 @@
+{
+    "values": [
+        {
+            "id": "11",
+            "iconURL": "https://avatar.ru",
+            "name": "Oleg Tolstosum",
+            "company": "Tinek",
+            "amount": {
+                "value": 123123,
+                "currency": "RUR",
+                "minorUnits": 100
+            },
+            "profit": -0.03
+        },
+        {
+            "id": "22",
+            "iconURL": "https://avatar.ru",
+            "name": "Mikhail Freeman",
+            "company": "Alfabank",
+            "amount": {
+                "value": 754358882,
+                "currency": "RUR",
+                "minorUnits": 100
+            },
+            "profit": -0.3
+        },
+        {
+            "id": "33",
+            "iconURL": "https://avatar.ru",
+            "name": "Gosha Hleb",
+            "company": "Sber",
+            "amount": {
+                "value": 990001,
+                "currency": "RUR",
+                "minorUnits": 100
+            },
+            "profit": -0.21
+        }
+    ]
+}
