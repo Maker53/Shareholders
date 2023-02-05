@@ -8,5 +8,5 @@ struct Shareholder: Decodable {
     let name: String
     let company: String
     let amount: Amount
-    let profit: Float
+    let profit: Double
 }
