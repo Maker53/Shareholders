@@ -31,6 +31,7 @@ Pod::Spec.new do |s|
 
     s.test_spec do |t_sp|
         t_sp.name = 'Tests'
+	t_sp.test_type = 'unit'
         t_sp.source_files = '**/*Tests.swift'
         t_sp.dependency 'TestAdditions'
     end
