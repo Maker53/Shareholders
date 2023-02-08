@@ -3,7 +3,7 @@
 import AlfaNetworking
 
 final class ShareholderListNetworkService: EmptyRequestTrait, DecodableResponseTrait {
-    typealias Model = [Shareholder]
+    typealias Model = ShareholderList
     
     let apiClient: APIClient
     
