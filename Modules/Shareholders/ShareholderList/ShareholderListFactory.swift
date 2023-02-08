@@ -6,6 +6,8 @@ public struct ShareholderListFactory<Routes: ShareholderListRoutes>: Factory {
     public typealias ViewController = ShareholderListViewController
     public typealias Context = Any?
     
+    public init() { }
+    
     public func build(with context: Context) throws -> ViewController<Routes> {
         let presenter = ShareholderListPresenter()
         let interactor = ShareholderListInteractor(presenter: presenter)

@@ -8,6 +8,7 @@
 
 import AlfaFoundation
 import SharedRouter
+import Shareholders
 
 public extension Routes {
     /// Метод создает DestinationStep со следующими настройками:
@@ -38,7 +39,16 @@ public extension Routes {
 
 extension Routes: StartRoutes {
     static func shareholdersList() -> SharedRouter.Route {
-        SharedRouter.Route { _ in
+        SharedRouter.Route { completion in
+            try? RCRouter().navigate(
+                to: defaultStep(factory: ShareholderListFactory<Routes>()),
+                with: nil,
+                completion: completion
+            )
         }
     }
 }
+
+// MARK: - Routes + ShareholderListRoutes
+
+extension Routes: ShareholderListRoutes { }
