@@ -17,8 +17,7 @@ Pod::Spec.new do |s|
  
     s.subspec 'Common' do |sp|
         sp.source_files = 'Common/**/*.swift'
-        sp.exclude_files = 'Common/**/*Tests.swift'
-        sp.exclude_files = 'Common/**/*+Seeds.swift'
+        sp.exclude_files = ['Common/**/*Tests.swift', 'Common/**/*+Seeds.swift']
     end
  
     s.subspec 'ShareholderDetails' do |sp|
@@ -42,6 +41,7 @@ Pod::Spec.new do |s|
 
     s.test_spec do |t_sp|
         t_sp.name = 'Tests'
+	t_sp.test_type = 'unit'
         t_sp.source_files = '**/*Tests.swift'
         t_sp.dependency 'TestAdditions'
     end
