@@ -8,7 +8,7 @@ extension Shareholder {
             id: "10",
             iconURL: "https://avatar.ru",
             name: "Nikita Petrov",
-            company: "Alfabank",
+            company: Company.Alfabank,
             amount: Amount(value: 754358880, minorUnits: 100, currency: "RUR"),
             profit: 0.3
         )
