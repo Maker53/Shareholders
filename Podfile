@@ -87,6 +87,7 @@ end
 def features
   local_module('Installments')
   local_module('CardReissue')
+  local_module('Shareholders')
 end
 
 target 'AlfaOnboarding' do
