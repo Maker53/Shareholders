@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
  
     s.subspec 'Common' do |sp|
         sp.source_files = 'Common/**/*.swift'
-        sp.exclude_files = 'Common/**/*Tests.swift'
+        sp.exclude_files = ['Common/**/*Tests.swift', 'Common/**/*+Seeds.swift']
     end
  
     s.subspec 'ShareholderDetails' do |sp|
@@ -27,6 +27,10 @@ Pod::Spec.new do |s|
     s.subspec 'ShareholderList' do |sp|
         sp.source_files = 'ShareholderList/**/*.swift'
         sp.exclude_files = 'ShareholderList/**/*Tests.swift'
+    end
+
+    s.subspec 'Seeds' do |sp|
+        sp.source_files = '**/*+Seeds.swift'
     end
 
     s.test_spec do |t_sp|
