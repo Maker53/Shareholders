@@ -2,7 +2,7 @@
 
 import SharedProtocolsAndModels
 
-struct Shareholder: Decodable, Equatable {
+struct Shareholder: Decodable {
     let id: String
     let iconURL: String
     let name: String
