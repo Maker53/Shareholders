@@ -20,7 +20,7 @@ final class ShareholderListProviderTests: QuickSpec {
                 // when
                 _ = provider.fetchShareholderList()
                 // then
-                expect(networkServiceMock.sendRequestWasCalled).toEventually(beCalledOnce())
+                expect(networkServiceMock.sendRequestWasCalled).to(beCalledOnce())
             }
             
             context("when successful response") {
