@@ -65,7 +65,7 @@ final class ShareholderListProviderTests: QuickSpec {
                         // when
                         let result = provider.fetchShareholderList()
                         // then
-                        expect(dataStoreMock.setShareholderListModelWasCalled).toNotEventually(beCalledOnce())
+                        expect(dataStoreMock.setShareholderListModelWasCalled).toNotEventually(beCalled())
                         expect(result.error).toEventually(matchError(TestData.error))
                     }
                 }
