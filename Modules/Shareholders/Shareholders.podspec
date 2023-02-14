@@ -13,6 +13,7 @@ Pod::Spec.new do |s|
     s.dependency 'AlfaNetworking'
     s.dependency 'NetworkKit'
     s.dependency 'SnapKit'
+    s.dependency 'SharedRouter'
  
     s.subspec 'Common' do |sp|
         sp.source_files = 'Common/**/*.swift'
@@ -29,6 +30,11 @@ Pod::Spec.new do |s|
         sp.exclude_files = 'ShareholderList/**/*Tests.swift'
     end
 
+    s.subspec 'Mock' do |sp|
+        sp.source_files = '**/*Mock.swift'
+        sp.source_files = '**/*Mocks.swift'
+    end
+    
     s.subspec 'Seeds' do |sp|
         sp.source_files = '**/*+Seeds.swift'
     end
