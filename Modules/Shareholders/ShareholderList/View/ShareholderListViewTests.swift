@@ -23,10 +23,18 @@ final class ShareholderListViewTests: QuickSpec {
                 // given
                 view.tableView = tableViewMock
                 // when
-                view.configure(.init())
+                view.configure(TestData.viewModel)
                 // then
                 expect(tableViewMock.reloadDataWasCalled).to(beCalledOnce())
             }
         }
+    }
+}
+
+// MARK: - TestData
+
+private extension ShareholderListViewTests {
+    enum TestData {
+        static let viewModel = ShareholderListDataFlow.PresentShareholderList.ViewModel()
     }
 }
