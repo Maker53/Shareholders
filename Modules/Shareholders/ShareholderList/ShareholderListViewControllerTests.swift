@@ -40,7 +40,7 @@ final class ShareholderListViewControllerTests: QuickSpec {
         describe(".viewDidLoad") {
             it("should call interactor for fetch shareholder list") {
                 // when
-                interactorMock.fetchShareholderList(TestData.PresentShareholderList.request)
+                viewController.loadViewIfNeeded()
                 // then
                 expect(interactorMock.fetchShareholderListWasCalled).to(beCalledOnce())
                 expect(interactorMock.fetchShareholderListReceivedRequest).to(equal(TestData.PresentShareholderList.request))
