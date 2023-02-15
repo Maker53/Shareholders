@@ -5,9 +5,9 @@ protocol ShareholderListBusinessLogic: AnyObject {
 }
 
 final class ShareholderListInteractor: ShareholderListBusinessLogic {
-    // MARK: - Private Properties
+    // MARK: - Internal Properties
     
-    private let presenter: ShareholderListPresentationLogic
+    let presenter: ShareholderListPresentationLogic
     
     // MARK: - Initializer
     

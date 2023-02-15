@@ -17,14 +17,14 @@ public final class ShareholderListViewController<Routes: ShareholderListRoutes>:
     
     // MARK: - View
     
-    lazy var contentView: ShareholderListView = {
+    lazy var contentView: DisplayShareholderListView = {
         let view = ShareholderListView(delegate: self)
         return view
     }()
     
-    // MARK: - Private Properties
+    // MARK: - Internal Properties
     
-    private let interactor: ShareholderListBusinessLogic
+    let interactor: ShareholderListBusinessLogic
     
     // MARK: - Initializer
     
