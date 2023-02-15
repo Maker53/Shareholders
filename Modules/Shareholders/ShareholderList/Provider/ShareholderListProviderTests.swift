@@ -36,11 +36,13 @@ final class ShareholderListProviderTests: QuickSpec {
                     it("should call networkService") {
                         // given
                         dataStoreMock.shareholderListModelStub = nil
+                        networkServiceMock.sendRequestCompletionStub = .success(TestData.model)
                         // when
                         _ = provider.fetchShareholderList()
                         // then
                         expect(dataStoreMock.getShareholderListModelWasCalled).to(beCalledOnce())
                         expect(networkServiceMock.sendRequestWasCalled).to(beCalledOnce())
+                        expect(dataStoreMock.setShareholderListModelWasCalled).toEventually(beCalledOnce())
                     }
                 }
             }
@@ -53,6 +55,7 @@ final class ShareholderListProviderTests: QuickSpec {
                         // when
                         let result = provider.fetchShareholderList(usingCache: false)
                         // then
+                        expect(networkServiceMock.sendRequestWasCalled).to(beCalledOnce())
                         expect(dataStoreMock.setShareholderListModelWasCalled).toEventually(beCalledOnce())
                         expect(result.value).toEventually(equal(TestData.model))
                     }
@@ -65,6 +68,7 @@ final class ShareholderListProviderTests: QuickSpec {
                         // when
                         let result = provider.fetchShareholderList(usingCache: false)
                         // then
+                        expect(networkServiceMock.sendRequestWasCalled).to(beCalledOnce())
                         expect(dataStoreMock.setShareholderListModelWasCalled).toNotEventually(beCalled())
                         expect(result.error).toEventually(matchError(TestData.error))
                     }
