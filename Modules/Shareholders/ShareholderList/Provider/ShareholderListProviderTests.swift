@@ -8,40 +8,70 @@ import NetworkKit
 final class ShareholderListProviderTests: QuickSpec {
     override func spec() {
         var networkServiceMock: NetworkServiceMock<ShareholderList, Void, Void, ServiceError>!
+        var dataStoreMock: StoresShareholderListMock!
         var provider: ShareholderListProvider!
         
         beforeEach {
             networkServiceMock = .init()
-            provider = .init(service: networkServiceMock)
+            dataStoreMock = .init()
+            provider = .init(dataStore: dataStoreMock, service: networkServiceMock)
         }
         
         describe(".fetchShareholderList") {
-            it("should call network service") {
-                // when
-                _ = provider.fetchShareholderList()
-                // then
-                expect(networkServiceMock.sendRequestWasCalled).to(beCalledOnce())
-            }
-            
-            context("when successful response") {
-                it("should return response model") {
-                    // given
-                    networkServiceMock.sendRequestCompletionStub = .success(TestData.responseModel)
-                    // when
-                    let result = provider.fetchShareholderList()
-                    // then
-                    expect(result.value).toEventually(equal(TestData.responseModel))
+            context("when usingCache is true") {
+                context("when dataStore contains model") {
+                    it("should return response model from DataStore") {
+                        // given
+                        dataStoreMock.shareholderListModelStub = TestData.model
+                        // when
+                        let result = provider.fetchShareholderList()
+                        // then
+                        expect(dataStoreMock.getShareholderListModelWasCalled).to(beCalledOnce())
+                        expect(networkServiceMock.sendRequestWasCalled).toNot(beCalled())
+                        expect(result.value).to(equal(TestData.model))
+                    }
+                }
+                
+                context("when dataStore doesn't contain model") {
+                    it("should call networkService") {
+                        // given
+                        dataStoreMock.shareholderListModelStub = nil
+                        networkServiceMock.sendRequestCompletionStub = .success(TestData.model)
+                        // when
+                        _ = provider.fetchShareholderList()
+                        // then
+                        expect(dataStoreMock.getShareholderListModelWasCalled).to(beCalledOnce())
+                        expect(networkServiceMock.sendRequestWasCalled).to(beCalledOnce())
+                        expect(dataStoreMock.setShareholderListModelWasCalled).toEventually(beCalledOnce())
+                    }
                 }
             }
             
-            context("when failure response") {
-                it("should return error") {
-                    // given
-                    networkServiceMock.sendRequestCompletionStub = .failure(TestData.responseError)
-                    // when
-                    let result = provider.fetchShareholderList()
-                    // then
-                    expect(result.error).toEventually(matchError(TestData.responseError))
+            context("when usingCache is false") {
+                context("when successful response from networkService call") {
+                    it("return response model") {
+                        // given
+                        networkServiceMock.sendRequestCompletionStub = .success(TestData.model)
+                        // when
+                        let result = provider.fetchShareholderList(usingCache: false)
+                        // then
+                        expect(networkServiceMock.sendRequestWasCalled).to(beCalledOnce())
+                        expect(dataStoreMock.setShareholderListModelWasCalled).toEventually(beCalledOnce())
+                        expect(result.value).toEventually(equal(TestData.model))
+                    }
+                }
+                
+                context("when failure response from networkService call") {
+                    it("should return error") {
+                        // given
+                        networkServiceMock.sendRequestCompletionStub = .failure(TestData.error)
+                        // when
+                        let result = provider.fetchShareholderList(usingCache: false)
+                        // then
+                        expect(networkServiceMock.sendRequestWasCalled).to(beCalledOnce())
+                        expect(dataStoreMock.setShareholderListModelWasCalled).toNotEventually(beCalled())
+                        expect(result.error).toEventually(matchError(TestData.error))
+                    }
                 }
             }
         }
@@ -52,7 +82,7 @@ final class ShareholderListProviderTests: QuickSpec {
 
 private extension ShareholderListProviderTests {
     enum TestData {
-        static let responseModel = ShareholderList.Seeds.values
-        static let responseError: ServiceError = .other
+        static let model = ShareholderList.Seeds.values
+        static let error: ServiceError = .other
     }
 }
