@@ -4,7 +4,6 @@ import ABUIComponents
 import SnapKit
 
 protocol DisplayShareholderListView: UIView {
-    var delegate: ShareholderListViewDelegate? { get set }
     func configure(_ viewModel: ShareholderListDataFlow.PresentShareholderList.ViewModel)
 }
 
@@ -23,11 +22,11 @@ final class ShareholderListView: UIView {
     // MARK: - Internal Properties
     
     weak var delegate: ShareholderListViewDelegate?
+    let tableManager: ShareholderListTableManagerProtocol
     
     // MARK: - Private Properties
     
     private let appearance = Appearance()
-    private let tableManager: ShareholderListTableManagerProtocol
     
     // MARK: - Initializers
     

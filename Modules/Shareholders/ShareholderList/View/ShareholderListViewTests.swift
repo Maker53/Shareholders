@@ -18,6 +18,14 @@ final class ShareholderListViewTests: QuickSpec {
             view = ShareholderListView(delegate: delegateMock, tableManager: tableManagerMock)
         }
         
+        describe(".init") {
+            it("should setup tableView") {
+                // then
+                expect(view.tableView.dataSource).to(beIdenticalTo(tableManagerMock))
+                expect(view.tableView.backgroundColor).to(equal(TestData.tableViewBackgroundColor))
+            }
+        }
+        
         describe(".configure") {
             it("should ask table view to reload data") {
                 // given
@@ -34,7 +42,8 @@ final class ShareholderListViewTests: QuickSpec {
 // MARK: - TestData
 
 private extension ShareholderListViewTests {
-    enum TestData {
+    enum TestData: Theme {
         static let viewModel = ShareholderListDataFlow.PresentShareholderList.ViewModel()
+        static let tableViewBackgroundColor = Palette.backgroundPrimary
     }
 }
