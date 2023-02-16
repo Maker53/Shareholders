@@ -12,10 +12,19 @@ final class ShareholderListNetworkServiceTests: QuickSpec {
             APIClientRegister.setup()
         }
         
+        beforeEach {
+            networkService = ShareholderListNetworkService()
+        }
+        
+        describe(".init") {
+            it("should init default value properly") {
+                // then
+                expect(networkService.apiClient).to(beIdenticalTo(TestData.apiClient))
+            }
+        }
+        
         describe(".endpoint") {
             it("should generate correct endpoint") {
-                // when
-                networkService = ShareholderListNetworkService()
                 // then
                 expect(networkService.endpoint(with: ())).to(equal(TestData.staticEndpoint))
             }
@@ -28,5 +37,6 @@ final class ShareholderListNetworkServiceTests: QuickSpec {
 private extension ShareholderListNetworkServiceTests {
     enum TestData {
         static let staticEndpoint = "v1/shareholders"
+        static let apiClient = APIClientRegister.shared.client(withID: .unauthorizedSense)
     }
 }

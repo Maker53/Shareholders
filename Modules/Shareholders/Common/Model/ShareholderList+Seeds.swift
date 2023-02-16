@@ -3,7 +3,7 @@
 extension ShareholderList {
     enum Seeds {
         static let values = ShareholderList(
-            values: [Shareholder.Seeds.value, Shareholder.Seeds.value]
+            values: [Shareholder.Seeds.value, Shareholder.Seeds.valueCompanyUnknown]
         )
     }
 }
