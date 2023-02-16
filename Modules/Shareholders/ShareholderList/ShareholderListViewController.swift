@@ -18,7 +18,7 @@ public final class ShareholderListViewController<Routes: ShareholderListRoutes>:
     // MARK: - View
     
     lazy var contentView: DisplayShareholderListView = {
-        let view = ShareholderListView(delegate: self)
+        let view = ShareholderListView(delegate: self, tableManager: ShareholderListTableManager())
         return view
     }()
     

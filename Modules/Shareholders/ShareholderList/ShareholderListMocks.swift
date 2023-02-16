@@ -1,6 +1,7 @@
 // Created by Станислав on 07.02.2023.
 
 import SharedRouter
+import ABUIComponents
 
 final class ShareholderListDisplayLogicMock: ShareholderListDisplayLogic {
     // MARK: - displayShareholedList
@@ -14,7 +15,17 @@ final class ShareholderListDisplayLogicMock: ShareholderListDisplayLogic {
     }
 }
 
-final class DisplayShareholderListViewMock: UIView, DisplayShareholderListView { }
+final class DisplayShareholderListViewMock: UIView, DisplayShareholderListView {
+    // MARK: - configure
+    
+    private(set) var configureWasCalled = 0
+    private(set) var configureReceivedViewModel: ShareholderListDataFlow.PresentShareholderList.ViewModel?
+    
+    func configure(_ viewModel: ShareholderListDataFlow.PresentShareholderList.ViewModel) {
+        configureWasCalled += 1
+        configureReceivedViewModel = viewModel
+    }
+}
 
 final class ShareholderListBusinessLogicMock: ShareholderListBusinessLogic {
     // MARK: - fetchShareholderList
@@ -61,3 +72,11 @@ public final class ShareholderListRoutesMock: ShareholderListRoutes {
     
     public init() { }
 }
+
+final class ShareholderListTableManagerProtocolMock: UITableViewDataSourceMock, ShareholderListTableManagerProtocol {
+    // MARK: - Shareholders
+    
+    var shareholders: [Shareholder] = []
+}
+
+final class ShareholderListViewDelegateMock: ShareholderListViewDelegate { }

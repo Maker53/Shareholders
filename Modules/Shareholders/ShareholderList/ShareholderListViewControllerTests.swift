@@ -8,32 +8,29 @@ final class ShareholderListViewControllerTests: QuickSpec {
     override func spec() {
         var interactorMock: ShareholderListBusinessLogicMock!
         var contentViewMock: DisplayShareholderListViewMock!
-        var contentView: ShareholderListView!
         var viewController: ShareholderListViewController<ShareholderListRoutesMock>!
         
         beforeEach {
             interactorMock = .init()
             contentViewMock = .init()
             viewController = .init(interactor: interactorMock)
-            contentView = .init(delegate: viewController)
-            viewController.contentView = contentView
         }
         
         describe(".loadView") {
             it("should setup view") {
                 // when
                 viewController.contentView = contentViewMock
-                viewController.loadView()
                 // then
                 expect(viewController.view).to(beIdenticalTo(contentViewMock))
                 expect(viewController.view.backgroundColor).to(equal(TestData.contentViewBackgroundColor))
             }
             
-            it("should set view delegate") {
+            it("should set view delegate and tableManager") {
                 // when
-                viewController.loadView()
+                let contentView = viewController.contentView as? ShareholderListView
                 // then
-                expect(contentView.delegate).to(beIdenticalTo(viewController))
+                expect(contentView?.delegate).to(beIdenticalTo(viewController))
+                expect(contentView?.tableManager).to(beAnInstanceOf(TestData.tableManagerType))
             }
         }
         
@@ -54,6 +51,7 @@ final class ShareholderListViewControllerTests: QuickSpec {
 private extension ShareholderListViewControllerTests {
     enum TestData: Theme {
         static let contentViewBackgroundColor = Palette.backgroundPrimary
+        static let tableManagerType = ShareholderListTableManager.self
         
         enum PresentShareholderList {
             static let request = ShareholderListDataFlow.PresentShareholderList.Request()
