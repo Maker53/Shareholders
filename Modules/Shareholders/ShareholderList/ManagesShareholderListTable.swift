@@ -3,15 +3,15 @@
 import ABUIComponents
 
 protocol ShareholderListTableManagerProtocol: UITableViewDataSource {
-    var shareholders: [Shareholder] { get set }
+    var rows: [ShareholderListCellViewModel] { get set }
 }
 
 final class ShareholderListTableManager: NSObject, ShareholderListTableManagerProtocol {
-    var shareholders: [Shareholder] = []
+    var rows: [ShareholderListCellViewModel] = []
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard section == 0 else { return 0 }
-        return shareholders.count
+        return rows.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -31,14 +31,8 @@ final class ShareholderListTableManager: NSObject, ShareholderListTableManagerPr
 // MARK: - Private
 
 private extension ShareholderListTableManager {
-    func getViewModel(by index: Int) -> ShareholderListViewModel? {
-        guard let shareholder = shareholders[safe: index] else { return nil }
-        let viewModel = ShareholderListViewModel(
-            name: shareholder.name,
-            phone: shareholder.company.rawValue,
-            imageSource: .image(.assets.art_logoAlfa_color)
-        )
-        
+    func getViewModel(by index: Int) -> ShareholderListCellViewModel? {
+        guard let viewModel = rows[safe: index] else { return nil }
         return viewModel
     }
 }

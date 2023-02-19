@@ -18,20 +18,20 @@ final class ManagesShareholderListTableTests: QuickSpec {
         describe(".init") {
             it("should init shareholders to empty") {
                 // then
-                expect(tableManager.shareholders).to(beEmpty())
+                expect(tableManager.rows).to(beEmpty())
             }
         }
         
         describe(".numberOfRowsInSection") {
             beforeEach {
-                tableManager.shareholders = TestData.shareholders
+                tableManager.rows = TestData.rows
             }
             
             it("should return correct number of rows") {
                 // when
                 let numberOfRows = tableManager.tableView(tableViewMock, numberOfRowsInSection: TestData.correctSection)
                 // then
-                expect(numberOfRows).to(equal(TestData.shareholders.count))
+                expect(numberOfRows).to(equal(TestData.rows.count))
             }
             
             it("should return 0") {
@@ -47,7 +47,7 @@ final class ManagesShareholderListTableTests: QuickSpec {
                 // given
                 tableViewMock.dequeueReusableCellWithIdentifierStub = TestData.contactCell
                 tableViewMock.dequeueReusableCellWithIdentifierForIndexPathStub = TestData.contactCell
-                tableManager.shareholders = TestData.shareholders
+                tableManager.rows = TestData.rows
                 // when
                 let cell = tableManager.tableView(tableViewMock, cellForRowAt: TestData.correctIndexPath)
                 // then
@@ -72,7 +72,7 @@ private extension ManagesShareholderListTableTests {
         static let incorrectSection = incorrectIndexPath.section
         static let correctIndexPath = IndexPath(row: 0, section: 0)
         static let incorrectIndexPath = IndexPath(row: 999, section: 999)
-        static let shareholders: [Shareholder] = [.Seeds.value]
+        static let rows: [ShareholderListCellViewModel] = [.Seeds.value]
         static let contactCell = ContactCell()
         static let contactCellType = ContactCell.self
         static let tableViewCellType = UITableViewCell.self

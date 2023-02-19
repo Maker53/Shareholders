@@ -3,7 +3,7 @@
 import ABUIComponents
 import SharedProtocolsAndModels
 
-struct ShareholderListViewModel: ContactCellViewModel {
+struct ShareholderListCellViewModel: ContactCellViewModel {
     var name: String
     var phone: String?
     var imageSource: ImageSource
