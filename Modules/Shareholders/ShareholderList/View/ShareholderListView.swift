@@ -49,7 +49,7 @@ final class ShareholderListView: UIView {
 
 extension ShareholderListView: DisplayShareholderListView {
     func configure(_ viewModel: ShareholderListDataFlow.PresentShareholderList.ViewModel) {
-        //TODO tableManager configure
+        tableManager.rows = viewModel.rows
         tableView.reloadData()
     }
 }

@@ -47,14 +47,16 @@ public final class ShareholderListViewController<Routes: ShareholderListRoutes>:
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        interactor.fetchShareholderList(.init())
+        interactor.fetchShareholderList()
     }
 }
 
 // MARK: - ShareholderListDisplayLogic
 
 extension ShareholderListViewController: ShareholderListDisplayLogic {
-    func displayShareholedList(_ viewModel: ShareholderListDataFlow.PresentShareholderList.ViewModel) { }
+    func displayShareholedList(_ viewModel: ShareholderListDataFlow.PresentShareholderList.ViewModel) {
+        contentView.configure(viewModel)
+    }
 }
 
 // MARK: - ShareholderListViewDelegate
