@@ -23,10 +23,8 @@ final class ShareholderListInteractor: ShareholderListBusinessLogic {
     // MARK: - ShareholderListBusinessLogic
     
     func fetchShareholderList() {
-        let shareholderListPromise = provider.fetchShareholderList(usingCache: true)
-        
         firstly {
-            shareholderListPromise
+            provider.fetchShareholderList(usingCache: true)
         }.done { [weak self] in
             self?.presenter.presentShareholderList(.init(shareholders: $0))
         }.catch {
