@@ -20,7 +20,8 @@ final class ShareholderListPresenterTests: QuickSpec {
                 preseneter.presentShareholderList(TestData.PresentShareholderList.response)
                 // then
                 expect(viewControllerMock.displayShareholedListWasCalled).to(beCalledOnce())
-                expect(viewControllerMock.displayShareholedListReceivedViewModel).to(equal(TestData.PresentShareholderList.viewModel))
+                expect(viewControllerMock.displayShareholedListReceivedViewModel)
+                    .to(equal(TestData.PresentShareholderList.viewModel))
             }
         }
     }
@@ -31,8 +32,13 @@ final class ShareholderListPresenterTests: QuickSpec {
 private extension ShareholderListPresenterTests {
     enum TestData {
         enum PresentShareholderList {
-            static let response = ShareholderListDataFlow.PresentShareholderList.Response()
-            static let viewModel = ShareholderListDataFlow.PresentShareholderList.ViewModel()
+            static let shareholders = ShareholderList.Seeds.values
+            static let shareholderListCellViewModels = [
+                ShareholderListCellViewModel.Seeds.value,
+                ShareholderListCellViewModel.Seeds.valueCompanyUnknown
+            ]
+            static let response = ShareholderListDataFlow.PresentShareholderList.Response(shareholders: shareholders)
+            static let viewModel = ShareholderListDataFlow.PresentShareholderList.ViewModel(rows: shareholderListCellViewModels)
         }
     }
 }

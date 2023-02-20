@@ -1,6 +1,7 @@
 // Created by Станислав on 07.02.2023.
 
 import TestAdditions
+import AlfaNetworking
 @testable import Shareholders
 
 final class ShareholderListFactoryTests: QuickSpec {
@@ -18,8 +19,15 @@ final class ShareholderListFactoryTests: QuickSpec {
                 // then
                 let interactor = viewController?.interactor as? ShareholderListInteractor
                 let presenter = interactor?.presenter as? ShareholderListPresenter
+                let provider = interactor?.provider as? ShareholderListProvider
+                let service: ModelService<ShareholderList>? = provider?["service"]
+                let dataStore: ShareholderListDataStore? = provider?["dataStore"]
+                expect(viewController).toNot(beNil())
                 expect(interactor).toNot(beNil())
                 expect(presenter).toNot(beNil())
+                expect(provider).toNot(beNil())
+                expect(service).toNot(beNil())
+                expect(dataStore).toNot(beNil())
             }
             
             it("should set dependencies between module parts") {
@@ -41,6 +49,8 @@ final class ShareholderListFactoryTests: QuickSpec {
         }
     }
 }
+
+extension ShareholderListProvider: PropertyReflectable { }
 
 // MARK: - TestData
 

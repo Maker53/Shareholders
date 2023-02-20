@@ -40,7 +40,18 @@ final class ShareholderListViewControllerTests: QuickSpec {
                 viewController.loadViewIfNeeded()
                 // then
                 expect(interactorMock.fetchShareholderListWasCalled).to(beCalledOnce())
-                expect(interactorMock.fetchShareholderListReceivedRequest).to(equal(TestData.PresentShareholderList.request))
+            }
+        }
+        
+        describe(".displayShareholedList") {
+            it("should configure view") {
+                // given
+                viewController.contentView = contentViewMock
+                // when
+                viewController.displayShareholedList(TestData.PresentShareholderList.viewModel)
+                // then
+                expect(contentViewMock.configureWasCalled).to(beCalledOnce())
+                expect(contentViewMock.configureReceivedViewModel).to(equal(TestData.PresentShareholderList.viewModel))
             }
         }
     }
@@ -54,8 +65,11 @@ private extension ShareholderListViewControllerTests {
         static let tableManagerType = ShareholderListTableManager.self
         
         enum PresentShareholderList {
-            static let request = ShareholderListDataFlow.PresentShareholderList.Request()
-            static let viewModel = ShareholderListDataFlow.PresentShareholderList.ViewModel()
+            static let shareholderListCellViewModels = [
+                ShareholderListCellViewModel.Seeds.value,
+                ShareholderListCellViewModel.Seeds.valueCompanyUnknown
+            ]
+            static let viewModel = ShareholderListDataFlow.PresentShareholderList.ViewModel(rows: shareholderListCellViewModels)
         }
     }
 }

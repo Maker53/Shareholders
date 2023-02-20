@@ -33,6 +33,7 @@ final class ShareholderListViewTests: QuickSpec {
                 // when
                 view.configure(TestData.viewModel)
                 // then
+                expect(tableManagerMock.rows).to(equal(TestData.rows))
                 expect(tableViewMock.reloadDataWasCalled).to(beCalledOnce())
             }
         }
@@ -43,7 +44,11 @@ final class ShareholderListViewTests: QuickSpec {
 
 private extension ShareholderListViewTests {
     enum TestData: Theme {
-        static let viewModel = ShareholderListDataFlow.PresentShareholderList.ViewModel()
+        static let rows = [
+            ShareholderListCellViewModel.Seeds.value,
+            ShareholderListCellViewModel.Seeds.valueCompanyUnknown
+        ]
+        static let viewModel = ShareholderListDataFlow.PresentShareholderList.ViewModel(rows: rows)
         static let tableViewBackgroundColor = Palette.backgroundPrimary
     }
 }
