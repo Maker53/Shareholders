@@ -1,5 +1,6 @@
 // Created by Станислав on 14.02.2023.
 
+import AlfaFoundation
 import TestAdditions
 import ABUIComponents
 @testable import Shareholders
@@ -7,12 +8,15 @@ import ABUIComponents
 final class ManagesShareholderListTableTests: QuickSpec {
     override func spec() {
         var tableManager: ShareholderListTableManager!
+        var delegateMock: ShareholderListTableManagerDelegateMock!
         var tableViewMock: UITableViewMock!
         
         beforeEach {
+            delegateMock = .init()
             tableViewMock = .init()
-            tableManager = .init()
+            tableManager = .init(delegate: delegateMock)
             tableViewMock.dataSource = tableManager
+            tableViewMock.delegate = tableManager
         }
         
         describe(".init") {
@@ -61,6 +65,31 @@ final class ManagesShareholderListTableTests: QuickSpec {
                 expect(cell).to(beAnInstanceOf(TestData.tableViewCellType))
             }
         }
+        
+        describe(".didSelectRowAt") {
+            it("should call delegate") {
+                // given
+                tableManager.rows = TestData.rows
+                // when
+                tableManager.tableView(tableViewMock, didSelectRowAt: TestData.correctIndexPath)
+                // then
+                expect(tableViewMock.deselectRowWasCalled).to(beCalledOnce())
+                expect(tableViewMock.deselectRowReceivedArguments?.indexPath).to(equal(TestData.correctIndexPath))
+                expect(tableViewMock.deselectRowReceivedArguments?.animated).to(equal(true))
+                expect(delegateMock.didSelectShareholderWasCalled).to(beCalledOnce())
+                expect(delegateMock.didSelectShareholderReceivedUid).to(equal(TestData.uid))
+            }
+            
+            it("shouldn't call delegate") {
+                // when
+                tableManager.tableView(tableViewMock, didSelectRowAt: TestData.incorrectIndexPath)
+                // then
+                expect(tableViewMock.deselectRowWasCalled).to(beCalledOnce())
+                expect(tableViewMock.deselectRowReceivedArguments?.indexPath).to(equal(TestData.incorrectIndexPath))
+                expect(tableViewMock.deselectRowReceivedArguments?.animated).to(equal(true))
+                expect(delegateMock.didSelectShareholderWasCalled).toNot(beCalled())
+            }
+        }
     }
 }
 
@@ -72,9 +101,14 @@ private extension ManagesShareholderListTableTests {
         static let incorrectSection = incorrectIndexPath.section
         static let correctIndexPath = IndexPath(row: 0, section: 0)
         static let incorrectIndexPath = IndexPath(row: 999, section: 999)
-        static let rows: [ShareholderListCellViewModel] = [.Seeds.value]
+        static let uid: UniqueIdentifier = .init(row.uid)
+        static let rows: [ShareholderListCellViewModel] = [row]
         static let contactCell = ContactCell()
         static let contactCellType = ContactCell.self
         static let tableViewCellType = UITableViewCell.self
+        
+        // MARK: - Private
+        
+        static private let row = ShareholderListCellViewModel.Seeds.value
     }
 }

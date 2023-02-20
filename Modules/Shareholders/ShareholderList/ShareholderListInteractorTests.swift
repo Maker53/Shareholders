@@ -45,6 +45,17 @@ final class ShareholderListInteractorTests: QuickSpec {
                 }
             }
         }
+        
+        describe(".openShareholderDetails") {
+            it("should call presenter for present shareholder details") {
+                // when
+                interactor.openShareholderDetails(TestData.PresentShareholderDetails.request)
+                // then
+                expect(presenterMock.presentShareholderDetailsWasCalled).to(beCalledOnce())
+                expect(presenterMock.presentShareholderDetailsReceivedResponse)
+                    .to(equal(TestData.PresentShareholderDetails.response))
+            }
+        }
     }
 }
 
@@ -60,6 +71,12 @@ private extension ShareholderListInteractorTests {
             static let response = ShareholderListDataFlow.PresentShareholderList.Response(
                 shareholders: value
             )
+        }
+        
+        enum PresentShareholderDetails {
+            static let uid = ShareholderListCellViewModel.Seeds.value.uid
+            static let request = ShareholderListDataFlow.PresentShareholderDetails.Request(uid: uid)
+            static let response = ShareholderListDataFlow.PresentShareholderDetails.Response(uid: uid)
         }
     }
 }

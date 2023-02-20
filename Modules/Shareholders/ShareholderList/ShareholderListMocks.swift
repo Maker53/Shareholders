@@ -1,5 +1,6 @@
 // Created by Станислав on 07.02.2023.
 
+import AlfaFoundation
 import SharedRouter
 import SharedPromiseKit
 import ABUIComponents
@@ -13,6 +14,16 @@ final class ShareholderListDisplayLogicMock: ShareholderListDisplayLogic {
     func displayShareholedList(_ viewModel: ShareholderListDataFlow.PresentShareholderList.ViewModel) {
         displayShareholedListWasCalled += 1
         displayShareholedListReceivedViewModel = viewModel
+    }
+    
+    // MARK: - displayShareholderDetails
+    
+    private(set) var displayShareholderDetailsWasCalled = 0
+    private(set) var displayShareholderDetailsViewModel: ShareholderListDataFlow.PresentShareholderDetails.ViewModel?
+    
+    func displayShareholderDetails(_ viewModel: ShareholderListDataFlow.PresentShareholderDetails.ViewModel) {
+        displayShareholderDetailsWasCalled += 1
+        displayShareholderDetailsViewModel = viewModel
     }
 }
 
@@ -36,6 +47,16 @@ final class ShareholderListBusinessLogicMock: ShareholderListBusinessLogic {
     func fetchShareholderList() {
         fetchShareholderListWasCalled += 1
     }
+    
+    // MARK: - openShareholderDetails
+    
+    private(set) var openShareholderDetailsWasCalled = 0
+    private(set) var openShareholderDetailsReceivedRequest: ShareholderListDataFlow.PresentShareholderDetails.Request?
+    
+    func openShareholderDetails(_ request: ShareholderListDataFlow.PresentShareholderDetails.Request) {
+        openShareholderDetailsWasCalled += 1
+        openShareholderDetailsReceivedRequest = request
+    }
 }
 
 final class ShareholderListPresentationLogicMock: ShareholderListPresentationLogic {
@@ -47,6 +68,16 @@ final class ShareholderListPresentationLogicMock: ShareholderListPresentationLog
     func presentShareholderList(_ response: ShareholderListDataFlow.PresentShareholderList.Response) {
         presentShareholderListWasCalled += 1
         presentShareholderListReceivedResponse = response
+    }
+    
+    // MARK: - presentShareholderDetails
+    
+    private(set) var presentShareholderDetailsWasCalled = 0
+    private(set) var presentShareholderDetailsReceivedResponse: ShareholderListDataFlow.PresentShareholderDetails.Response?
+    
+    func presentShareholderDetails(_ response: ShareholderListDataFlow.PresentShareholderDetails.Response) {
+        presentShareholderDetailsWasCalled += 1
+        presentShareholderDetailsReceivedResponse = response
     }
 }
 
@@ -81,16 +112,58 @@ final class StoresShareholderListMock: StoresShareholderList {
     }
 }
 
-public final class ShareholderListRoutesMock: ShareholderListRoutes {
-    // MARK: - Initializer
+public enum ShareholderListRoutesMock: ShareholderListRoutes {
+    // MARK: - shareholderDetails
     
-    public init() { }
+    static var shareholderDetailsStub = SharedRouter.Route { _ in }
+    private(set) static var shareholderDetailsWasCalled = 0
+    private(set) static var shareholderDetailsReceivedUid: UniqueIdentifier?
+    
+    public static func shareholderDetails(uid: UniqueIdentifier) -> Route {
+        shareholderDetailsReceivedUid = uid
+        defer { shareholderDetailsWasCalled += 1 }
+        return shareholderDetailsStub
+    }
+}
+
+final class ShareholderListTableManagerDelegateMock: ShareholderListTableManagerDelegate {
+    // MARK: - didSelectShareholder
+    
+    private(set) var didSelectShareholderWasCalled = 0
+    private(set) var didSelectShareholderReceivedUid: UniqueIdentifier?
+    
+    func didSelectShareholder(_ uid: UniqueIdentifier) {
+        didSelectShareholderWasCalled += 1
+        didSelectShareholderReceivedUid = uid
+    }
 }
 
 final class ShareholderListTableManagerProtocolMock: UITableViewDataSourceMock, ShareholderListTableManagerProtocol {
     // MARK: - Shareholders
     
-    var rows: [ShareholderListCellViewModel] = []
+    private(set) var getRowsWasCalled = 0
+    private(set) var setRowsWasCalled = 0
+    var rowsStub: [ShareholderListCellViewModel] = []
+    var rows: [ShareholderListCellViewModel] {
+        get {
+            getRowsWasCalled += 1
+            return rowsStub
+        }
+        set {
+            setRowsWasCalled += 1
+            rowsStub = newValue
+        }
+    }
 }
 
-final class ShareholderListViewDelegateMock: ShareholderListViewDelegate { }
+final class ShareholderListViewDelegateMock: ShareholderListViewDelegate {
+    // MARK: - didSelectShareholder
+    
+    private(set) var didSelectShareholderWasCalled = 0
+    private(set) var didSelectShareholderReceivedUid: UniqueIdentifier?
+    
+    func didSelectShareholder(_ uid: UniqueIdentifier) {
+        didSelectShareholderWasCalled += 1
+        didSelectShareholderReceivedUid = uid
+    }
+}

@@ -7,13 +7,11 @@ import ABUIComponents
 final class ShareholderListViewSnapshots: QuickSpec {
     override func spec() {
         var view: ShareholderListView!
-        var tableManager: ShareholderListTableManager!
         var delegateMock: ShareholderListViewDelegateMock!
         
         beforeEach {
-            tableManager = .init()
             delegateMock = .init()
-            view = ShareholderListView(delegate: delegateMock, tableManager: tableManager)
+            view = ShareholderListView(delegate: delegateMock)
         }
 
         describe(".configure") {

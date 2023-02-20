@@ -24,6 +24,17 @@ final class ShareholderListPresenterTests: QuickSpec {
                     .to(equal(TestData.PresentShareholderList.viewModel))
             }
         }
+        
+        describe(".presentShareholderDetails") {
+            it("should call view controller for display shareholder details") {
+                // when
+                preseneter.presentShareholderDetails(TestData.PresentShareholderDetails.response)
+                // then
+                expect(viewControllerMock.displayShareholderDetailsWasCalled).to(beCalledOnce())
+                expect(viewControllerMock.displayShareholderDetailsViewModel)
+                    .to(equal(TestData.PresentShareholderDetails.viewModel))
+            }
+        }
     }
 }
 
@@ -39,6 +50,12 @@ private extension ShareholderListPresenterTests {
             ]
             static let response = ShareholderListDataFlow.PresentShareholderList.Response(shareholders: shareholders)
             static let viewModel = ShareholderListDataFlow.PresentShareholderList.ViewModel(rows: shareholderListCellViewModels)
+        }
+        
+        enum PresentShareholderDetails {
+            static let uid = ShareholderListCellViewModel.Seeds.value.uid
+            static let response = ShareholderListDataFlow.PresentShareholderDetails.Response(uid: uid)
+            static let viewModel = ShareholderListDataFlow.PresentShareholderDetails.ViewModel(uid: uid)
         }
     }
 }

@@ -5,7 +5,7 @@ import SharedProtocolsAndModels
 extension Shareholder {
     enum Seeds {
         static let value = Shareholder(
-            id: "10",
+            id: "1",
             iconURL: "https://avatar.ru",
             name: "Nikita Petrov",
             company: Company.Seeds.value,
@@ -14,7 +14,7 @@ extension Shareholder {
         )
         
         static let valueCompanyUnknown = Shareholder(
-            id: "10",
+            id: "2",
             iconURL: "https://avatar.ru",
             name: "Nikita Petrov",
             company: Company.Seeds.valueCompanyUnknown,

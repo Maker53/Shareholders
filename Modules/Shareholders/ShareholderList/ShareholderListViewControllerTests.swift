@@ -8,6 +8,7 @@ final class ShareholderListViewControllerTests: QuickSpec {
     override func spec() {
         var interactorMock: ShareholderListBusinessLogicMock!
         var contentViewMock: DisplayShareholderListViewMock!
+        let routesMock = ShareholderListRoutesMock.self
         var viewController: ShareholderListViewController<ShareholderListRoutesMock>!
         
         beforeEach {
@@ -25,12 +26,11 @@ final class ShareholderListViewControllerTests: QuickSpec {
                 expect(viewController.view.backgroundColor).to(equal(TestData.contentViewBackgroundColor))
             }
             
-            it("should set view delegate and tableManager") {
+            it("should set view delegate") {
                 // when
                 let contentView = viewController.contentView as? ShareholderListView
                 // then
                 expect(contentView?.delegate).to(beIdenticalTo(viewController))
-                expect(contentView?.tableManager).to(beAnInstanceOf(TestData.tableManagerType))
             }
         }
         
@@ -54,6 +54,27 @@ final class ShareholderListViewControllerTests: QuickSpec {
                 expect(contentViewMock.configureReceivedViewModel).to(equal(TestData.PresentShareholderList.viewModel))
             }
         }
+        
+        describe(".displayShareholderDetails") {
+            it("should navigate to shareholder details") {
+                // when
+                viewController.displayShareholderDetails(TestData.PresentShareholderDetails.viewModel)
+                // then
+                expect(routesMock.shareholderDetailsWasCalled).to(beCalledOnce())
+                expect(routesMock.shareholderDetailsReceivedUid).to(equal(TestData.PresentShareholderDetails.uid))
+            }
+        }
+        
+        describe(".didSelectShareholder") {
+            it("should call interactor for open shareholder details") {
+                // when
+                viewController.didSelectShareholder(TestData.PresentShareholderDetails.uid)
+                // then
+                expect(interactorMock.openShareholderDetailsWasCalled).to(beCalledOnce())
+                expect(interactorMock.openShareholderDetailsReceivedRequest)
+                    .to(equal(TestData.PresentShareholderDetails.request))
+            }
+        }
     }
 }
 
@@ -62,14 +83,25 @@ final class ShareholderListViewControllerTests: QuickSpec {
 private extension ShareholderListViewControllerTests {
     enum TestData: Theme {
         static let contentViewBackgroundColor = Palette.backgroundPrimary
-        static let tableManagerType = ShareholderListTableManager.self
+        static let cellViewModel = ShareholderListCellViewModel.Seeds.value
+        static let unknownCompanyCellViewModel = ShareholderListCellViewModel.Seeds.valueCompanyUnknown
         
         enum PresentShareholderList {
             static let shareholderListCellViewModels = [
-                ShareholderListCellViewModel.Seeds.value,
-                ShareholderListCellViewModel.Seeds.valueCompanyUnknown
+                cellViewModel,
+                unknownCompanyCellViewModel
             ]
-            static let viewModel = ShareholderListDataFlow.PresentShareholderList.ViewModel(rows: shareholderListCellViewModels)
+            static let viewModel = ShareholderListDataFlow.PresentShareholderList.ViewModel(
+                rows: shareholderListCellViewModels
+            )
+        }
+        
+        enum PresentShareholderDetails {
+            static let uid = cellViewModel.uid
+            static let viewModel = ShareholderListDataFlow.PresentShareholderDetails.ViewModel(uid: uid)
+            static let request = ShareholderListDataFlow.PresentShareholderDetails.Request(
+                uid: uid
+            )
         }
     }
 }
