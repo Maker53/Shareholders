@@ -52,3 +52,7 @@ extension Routes: StartRoutes {
 // MARK: - Routes + ShareholderListRoutes
 
 extension Routes: ShareholderListRoutes { }
+
+// MARK: - Routes + ShareholderDetailsRoutes
+
+extension Routes: ShareholderDetailsRoutes { }
