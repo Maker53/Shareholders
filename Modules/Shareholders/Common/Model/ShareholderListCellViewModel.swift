@@ -4,7 +4,7 @@ import ABUIComponents
 import SharedProtocolsAndModels
 
 struct ShareholderListCellViewModel: ContactCellViewModel {
-    var name: String
-    var phone: String?
-    var imageSource: ImageSource
+    let name: String
+    let phone: String?
+    let imageSource: ImageSource
 }

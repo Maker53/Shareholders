@@ -16,7 +16,7 @@ final class ShareholderListTableManager: NSObject, ShareholderListTableManagerPr
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard
-            let viewModel = getViewModel(by: indexPath.row),
+            let viewModel = rows[safe: indexPath.row],
             let cell = tableView.makeConfiguratedCell(
                 cellType: ContactCell.self,
                 viewModel: viewModel
@@ -25,14 +25,5 @@ final class ShareholderListTableManager: NSObject, ShareholderListTableManagerPr
         }
         
         return cell
-    }
-}
-
-// MARK: - Private
-
-private extension ShareholderListTableManager {
-    func getViewModel(by index: Int) -> ShareholderListCellViewModel? {
-        guard let viewModel = rows[safe: index] else { return nil }
-        return viewModel
     }
 }
