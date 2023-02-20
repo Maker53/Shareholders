@@ -1,6 +1,7 @@
 // Created by Станислав on 07.02.2023.
 
 import SharedRouter
+import SharedPromiseKit
 import ABUIComponents
 
 final class ShareholderListDisplayLogicMock: ShareholderListDisplayLogic {
@@ -31,11 +32,9 @@ final class ShareholderListBusinessLogicMock: ShareholderListBusinessLogic {
     // MARK: - fetchShareholderList
     
     var fetchShareholderListWasCalled = 0
-    var fetchShareholderListReceivedRequest: ShareholderListDataFlow.PresentShareholderList.Request?
     
-    func fetchShareholderList(_ request: ShareholderListDataFlow.PresentShareholderList.Request) {
+    func fetchShareholderList() {
         fetchShareholderListWasCalled += 1
-        fetchShareholderListReceivedRequest = request
     }
 }
 
@@ -48,6 +47,21 @@ final class ShareholderListPresentationLogicMock: ShareholderListPresentationLog
     func presentShareholderList(_ response: ShareholderListDataFlow.PresentShareholderList.Response) {
         presentShareholderListWasCalled += 1
         presentShareholderListReceivedResponse = response
+    }
+}
+
+final class ProvidesShareholderListMock: ProvidesShareholderList {
+    // MARK: - fetchShareholderList
+    
+    private(set) var fetchShareholderListWasCalled = 0
+    private(set) var fetchShareholderListWasCalledReceivedUsingCache: Bool?
+    var fetchShareholderListStub: Promise<ShareholderList>!
+    
+    func fetchShareholderList(usingCache: Bool) -> Promise<ShareholderList> {
+        fetchShareholderListWasCalled += 1
+        fetchShareholderListWasCalledReceivedUsingCache = usingCache
+        
+        return fetchShareholderListStub
     }
 }
 
@@ -76,7 +90,7 @@ public final class ShareholderListRoutesMock: ShareholderListRoutes {
 final class ShareholderListTableManagerProtocolMock: UITableViewDataSourceMock, ShareholderListTableManagerProtocol {
     // MARK: - Shareholders
     
-    var shareholders: [Shareholder] = []
+    var rows: [ShareholderListCellViewModel] = []
 }
 
 final class ShareholderListViewDelegateMock: ShareholderListViewDelegate { }
