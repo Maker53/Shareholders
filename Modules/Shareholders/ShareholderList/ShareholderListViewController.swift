@@ -1,10 +1,12 @@
 // Created by Станислав on 07.02.2023.
 
+import AlfaFoundation
 import ABUIComponents
 import SharedRouter
 
 protocol ShareholderListDisplayLogic: AnyObject {
     func displayShareholedList(_ viewModel: ShareholderListDataFlow.PresentShareholderList.ViewModel)
+    func displayShareholderDetails(_ viewModel: ShareholderListDataFlow.PresentShareholderDetails.ViewModel)
 }
 
 public final class ShareholderListViewController<Routes: ShareholderListRoutes>: UIViewController, Navigates {
@@ -18,7 +20,7 @@ public final class ShareholderListViewController<Routes: ShareholderListRoutes>:
     // MARK: - View
     
     lazy var contentView: DisplayShareholderListView = {
-        let view = ShareholderListView(delegate: self, tableManager: ShareholderListTableManager())
+        let view = ShareholderListView(delegate: self)
         return view
     }()
     
@@ -57,8 +59,16 @@ extension ShareholderListViewController: ShareholderListDisplayLogic {
     func displayShareholedList(_ viewModel: ShareholderListDataFlow.PresentShareholderList.ViewModel) {
         contentView.configure(viewModel)
     }
+    
+    func displayShareholderDetails(_ viewModel: ShareholderListDataFlow.PresentShareholderDetails.ViewModel) {
+        navigate(to: Routes.shareholderDetails(uid: viewModel.uid))
+    }
 }
 
 // MARK: - ShareholderListViewDelegate
 
-extension ShareholderListViewController: ShareholderListViewDelegate { }
+extension ShareholderListViewController: ShareholderListViewDelegate {
+    func didSelectShareholder(_ uid: UniqueIdentifier) {
+        interactor.openShareholderDetails(.init(uid: uid))
+    }
+}

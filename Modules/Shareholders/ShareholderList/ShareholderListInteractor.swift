@@ -5,6 +5,7 @@ import SharedProtocolsAndModels
 
 protocol ShareholderListBusinessLogic: AnyObject {
     func fetchShareholderList()
+    func openShareholderDetails(_ request: ShareholderListDataFlow.PresentShareholderDetails.Request)
 }
 
 final class ShareholderListInteractor: ShareholderListBusinessLogic {
@@ -30,5 +31,9 @@ final class ShareholderListInteractor: ShareholderListBusinessLogic {
         }.catch {
             ABLogError($0.localizedDescription)
         }
+    }
+    
+    func openShareholderDetails(_ request: ShareholderListDataFlow.PresentShareholderDetails.Request) {
+        presenter.presentShareholderDetails(.init(uid: request.uid))
     }
 }

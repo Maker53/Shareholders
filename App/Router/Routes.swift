@@ -38,8 +38,8 @@ public extension Routes {
 // MARK: - Routes + StartRoutes
 
 extension Routes: StartRoutes {
-    static func shareholdersList() -> SharedRouter.Route {
-        SharedRouter.Route { completion in
+    static func shareholdersList() -> Route {
+        Route { completion in
             try? RCRouter().navigate(
                 to: defaultStep(factory: ShareholderListFactory<Routes>()),
                 with: nil,
@@ -51,7 +51,17 @@ extension Routes: StartRoutes {
 
 // MARK: - Routes + ShareholderListRoutes
 
-extension Routes: ShareholderListRoutes { }
+extension Routes: ShareholderListRoutes {
+    public static func shareholderDetails(uid: UniqueIdentifier) -> Route {
+        Route { completion in
+            try? RCRouter().navigate(
+                to: Routes.defaultStep(factory: ShareholderDetailsFactory<Routes>()),
+                with: uid,
+                completion: completion
+            )
+        }
+    }
+}
 
 // MARK: - Routes + ShareholderDetailsRoutes
 

@@ -1,13 +1,29 @@
 // Created by Станислав on 10.02.2023.
 
+import AlfaFoundation
 import ABUIComponents
 
-protocol ShareholderListTableManagerProtocol: UITableViewDataSource {
+protocol ShareholderListTableManagerDelegate: AnyObject {
+    func didSelectShareholder(_ uid: UniqueIdentifier)
+}
+
+protocol ShareholderListTableManagerProtocol: UITableViewDataSource, UITableViewDelegate {
     var rows: [ShareholderListCellViewModel] { get set }
 }
 
 final class ShareholderListTableManager: NSObject, ShareholderListTableManagerProtocol {
+    // MARK: - Properties
+    
     var rows: [ShareholderListCellViewModel] = []
+    weak var delegate: ShareholderListTableManagerDelegate?
+    
+    // MARK: - Initializer
+    
+    required init(delegate: ShareholderListTableManagerDelegate?) {
+        self.delegate = delegate
+    }
+    
+    // MARK: - UITableViewDataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard section == 0 else { return 0 }
@@ -25,5 +41,13 @@ final class ShareholderListTableManager: NSObject, ShareholderListTableManagerPr
         }
         
         return cell
+    }
+    
+    // MARK: - UITableViewDelegate
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        guard let row = rows[safe: indexPath.row] else { return }
+        delegate?.didSelectShareholder(row.uid)
     }
 }

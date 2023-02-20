@@ -1,5 +1,6 @@
 // Created by Станислав on 07.02.2023.
 
+import AlfaFoundation
 import ABUIComponents
 import SnapKit
 
@@ -7,7 +8,9 @@ protocol DisplayShareholderListView: UIView {
     func configure(_ viewModel: ShareholderListDataFlow.PresentShareholderList.ViewModel)
 }
 
-protocol ShareholderListViewDelegate: AnyObject { }
+protocol ShareholderListViewDelegate: AnyObject {
+    func didSelectShareholder(_ uid: UniqueIdentifier)
+}
 
 final class ShareholderListView: UIView {
     // MARK: - Views
@@ -15,6 +18,7 @@ final class ShareholderListView: UIView {
     lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.dataSource = tableManager
+        tableView.delegate = tableManager
         tableView.backgroundColor = appearance.palette.backgroundPrimary
         return tableView
     }()
@@ -22,7 +26,7 @@ final class ShareholderListView: UIView {
     // MARK: - Internal Properties
     
     weak var delegate: ShareholderListViewDelegate?
-    let tableManager: ShareholderListTableManagerProtocol
+    lazy var tableManager: ShareholderListTableManagerProtocol = ShareholderListTableManager(delegate: self)
     
     // MARK: - Private Properties
     
@@ -30,9 +34,8 @@ final class ShareholderListView: UIView {
     
     // MARK: - Initializers
     
-    required init(delegate: ShareholderListViewDelegate?, tableManager: ShareholderListTableManagerProtocol) {
+    required init(delegate: ShareholderListViewDelegate?) {
         self.delegate = delegate
-        self.tableManager = tableManager
         super.init(frame: .zero)
         
         addSubviews()
@@ -51,6 +54,14 @@ extension ShareholderListView: DisplayShareholderListView {
     func configure(_ viewModel: ShareholderListDataFlow.PresentShareholderList.ViewModel) {
         tableManager.rows = viewModel.rows
         tableView.reloadData()
+    }
+}
+
+// MARK: - ShareholderListTableManagerDelegate
+
+extension ShareholderListView: ShareholderListTableManagerDelegate {
+    func didSelectShareholder(_ uid: UniqueIdentifier) {
+        delegate?.didSelectShareholder(uid)
     }
 }
 

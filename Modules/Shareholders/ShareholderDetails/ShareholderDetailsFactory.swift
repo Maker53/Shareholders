@@ -1,10 +1,11 @@
 // Created by Станислав on 16.02.2023.
 
+import AlfaFoundation
 import SharedRouter
 
 public struct ShareholderDetailsFactory<Routes: ShareholderDetailsRoutes>: Factory {
     public typealias ViewController = ShareholderDetailsViewController
-    public typealias Context = Any?
+    public typealias Context = UniqueIdentifier
     
     public init() { }
     
