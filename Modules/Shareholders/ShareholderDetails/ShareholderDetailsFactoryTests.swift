@@ -11,7 +11,7 @@ final class ShareholderDetailsFactoryTests: QuickSpec {
         beforeEach {
             factory = .init()
         }
-        
+        // TODO Поправить тесты, когда сделаю rebase с изменениями ветки feature/provider
         describe(".build") {
             it("should build module parts") {
                 // when
