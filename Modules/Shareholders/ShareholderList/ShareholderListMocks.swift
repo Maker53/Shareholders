@@ -143,8 +143,8 @@ final class ShareholderListTableManagerProtocolMock: UITableViewDataSourceMock, 
     
     private(set) var getRowsWasCalled = 0
     private(set) var setRowsWasCalled = 0
-    var rowsStub: [ShareholderListCellViewModel] = []
-    var rows: [ShareholderListCellViewModel] {
+    var rowsStub: [ShareholderCellViewModel] = []
+    var rows: [ShareholderCellViewModel] {
         get {
             getRowsWasCalled += 1
             return rowsStub

@@ -102,13 +102,13 @@ private extension ManagesShareholderListTableTests {
         static let correctIndexPath = IndexPath(row: 0, section: 0)
         static let incorrectIndexPath = IndexPath(row: 999, section: 999)
         static let uid: UniqueIdentifier = .init(row.uid)
-        static let rows: [ShareholderListCellViewModel] = [row]
+        static let rows: [ShareholderCellViewModel] = [row]
         static let contactCell = ContactCell()
         static let contactCellType = ContactCell.self
         static let tableViewCellType = UITableViewCell.self
         
         // MARK: - Private
         
-        static private let row = ShareholderListCellViewModel.Seeds.value
+        static private let row = ShareholderCellViewModel.Seeds.value
     }
 }

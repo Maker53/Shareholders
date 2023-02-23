@@ -3,23 +3,23 @@
 import ABUIComponents
 import SharedProtocolsAndModels
 
-extension ShareholderListCellViewModel {
+extension ShareholderCellViewModel {
     enum Seeds {
-        static let value = ShareholderListCellViewModel(
+        static let value = ShareholderCellViewModel(
             name: "Nikita Petrov",
             phone: "Alfabank",
             imageSource: .image(.assets.art_logoAlfa_color),
             uid: .init("1")
         )
         
-        static let valueCompanyUnknown = ShareholderListCellViewModel(
+        static let valueCompanyUnknown = ShareholderCellViewModel(
             name: "Nikita Petrov",
             phone: "unknown",
             imageSource: .image(.assets.art_logoAlfa_color),
             uid: .init("2")
         )
         
-        static let valueLongNames = ShareholderListCellViewModel(
+        static let valueLongNames = ShareholderCellViewModel(
             name: "TestName_TestName_TestName_TestName_TestName_TestName",
             phone: "TestCompanyName_TestCompanyName_TestCompanyName",
             imageSource: .image(.assets.art_logoAlfa_color),

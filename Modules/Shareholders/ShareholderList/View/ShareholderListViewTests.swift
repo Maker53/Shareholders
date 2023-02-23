@@ -65,8 +65,8 @@ final class ShareholderListViewTests: QuickSpec {
 
 private extension ShareholderListViewTests {
     enum TestData: Theme {
-        static let cellViewModel = ShareholderListCellViewModel.Seeds.value
-        static let unknownCompanyCellViewModel = ShareholderListCellViewModel.Seeds.valueCompanyUnknown
+        static let cellViewModel = ShareholderCellViewModel.Seeds.value
+        static let unknownCompanyCellViewModel = ShareholderCellViewModel.Seeds.valueCompanyUnknown
         
         enum PresentShareholderList {
             static let rows = [

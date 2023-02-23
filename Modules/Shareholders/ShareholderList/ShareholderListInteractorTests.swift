@@ -74,7 +74,7 @@ private extension ShareholderListInteractorTests {
         }
         
         enum PresentShareholderDetails {
-            static let uid = ShareholderListCellViewModel.Seeds.value.uid
+            static let uid = ShareholderCellViewModel.Seeds.value.uid
             static let request = ShareholderListDataFlow.PresentShareholderDetails.Request(uid: uid)
             static let response = ShareholderListDataFlow.PresentShareholderDetails.Response(uid: uid)
         }

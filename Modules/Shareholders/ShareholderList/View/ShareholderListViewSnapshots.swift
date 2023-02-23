@@ -47,16 +47,16 @@ final class ShareholderListViewSnapshots: QuickSpec {
 private extension ShareholderListViewSnapshots {
     enum TestData {
         static let normalRows = [
-            ShareholderListCellViewModel.Seeds.value,
-            ShareholderListCellViewModel.Seeds.valueCompanyUnknown,
-            ShareholderListCellViewModel.Seeds.value,
-            ShareholderListCellViewModel.Seeds.valueCompanyUnknown
+            ShareholderCellViewModel.Seeds.value,
+            ShareholderCellViewModel.Seeds.valueCompanyUnknown,
+            ShareholderCellViewModel.Seeds.value,
+            ShareholderCellViewModel.Seeds.valueCompanyUnknown
         ]
         static let longNameRows = [
-            ShareholderListCellViewModel.Seeds.valueLongNames,
-            ShareholderListCellViewModel.Seeds.valueLongNames,
-            ShareholderListCellViewModel.Seeds.valueLongNames,
-            ShareholderListCellViewModel.Seeds.valueLongNames
+            ShareholderCellViewModel.Seeds.valueLongNames,
+            ShareholderCellViewModel.Seeds.valueLongNames,
+            ShareholderCellViewModel.Seeds.valueLongNames,
+            ShareholderCellViewModel.Seeds.valueLongNames
         ]
         static let normalViewModel = ShareholderListDataFlow.PresentShareholderList.ViewModel(rows: normalRows)
         static let longNameViewModel = ShareholderListDataFlow.PresentShareholderList.ViewModel(rows: longNameRows)
