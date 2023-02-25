@@ -55,7 +55,9 @@ extension Routes: ShareholderListRoutes {
     public static func shareholderDetails(uid: UniqueIdentifier) -> Route {
         Route { completion in
             try? RCRouter().navigate(
-                to: Routes.defaultStep(factory: ShareholderDetailsFactory<Routes>()),
+                to: Routes.defaultStep(factory: ShareholderDetailsFactory<Routes>(
+                    featureService: FeatureService.shared
+                )),
                 with: uid,
                 completion: completion
             )
