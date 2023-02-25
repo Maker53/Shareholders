@@ -20,3 +20,5 @@ bundle exec pod install
 - Cocoapods
 - Unit tests (Quick + Nimble)
 - Snapshots tests
+
+[Copyright](https://alfa-campus.ru/ios)
