@@ -7,7 +7,10 @@ protocol StoresShareholderList: AnyObject {
 }
 
 final class ShareholderListDataStore: StoresShareholderList {
+    static let sharedInstance = ShareholderListDataStore()
     var shareholderListModel: ShareholderList?
+    
+    private init() { }
 }
 
 // MARK: - Purgeable
