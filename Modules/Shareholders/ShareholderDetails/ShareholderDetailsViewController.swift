@@ -1,9 +1,12 @@
 // Created by Станислав on 16.02.2023.
 
+import AlfaFoundation
 import ABUIComponents
 import SharedRouter
 
-protocol ShareholderDetailsDisplayLogic: AnyObject { }
+protocol ShareholderDetailsDisplayLogic: AnyObject {
+    func displayShareholderDetails(_ viewModel: ShareholderDetailsDataFlow.PresentShareholderDetails.ViewModel)
+}
 
 public final class ShareholderDetailsViewController<Routes: ShareholderDetailsRoutes>: UIViewController, Navigates {
     // MARK: - Appearance
@@ -23,11 +26,13 @@ public final class ShareholderDetailsViewController<Routes: ShareholderDetailsRo
     // MARK: - Internal Properties
     
     let interactor: ShareholderDetailsBusinessLogic
+    let shareholderUid: UniqueIdentifier
     
     // MARK: - Initializer
     
-    required init(interactor: ShareholderDetailsBusinessLogic) {
+    required init(interactor: ShareholderDetailsBusinessLogic, uid: UniqueIdentifier) {
         self.interactor = interactor
+        shareholderUid = uid
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -42,8 +47,18 @@ public final class ShareholderDetailsViewController<Routes: ShareholderDetailsRo
         view = contentView
         view.backgroundColor = appearance.backgroundColor
     }
+    
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        interactor.fetchShareholderDetails(.init(uid: shareholderUid))
+    }
 }
 
 // MARK: - ShareholderDetailsDisplayLogic
 
-extension ShareholderDetailsViewController: ShareholderDetailsDisplayLogic { }
+extension ShareholderDetailsViewController: ShareholderDetailsDisplayLogic {
+    func displayShareholderDetails(_ viewModel: ShareholderDetailsDataFlow.PresentShareholderDetails.ViewModel) {
+        contentView.configure(viewModel)
+    }
+}

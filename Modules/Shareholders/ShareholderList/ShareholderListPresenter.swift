@@ -14,7 +14,7 @@ final class ShareholderListPresenter: ShareholderListPresentationLogic {
     
     func presentShareholderList(_ response: ShareholderListDataFlow.PresentShareholderList.Response) {
         let rows = response.shareholders.values.map {
-            ShareholderListCellViewModel(
+            ShareholderCellViewModel(
                 name: $0.name,
                 phone: $0.company.rawValue,
                 imageSource: .image(.assets.art_logoAlfa_color),

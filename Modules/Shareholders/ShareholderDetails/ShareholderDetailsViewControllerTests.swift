@@ -13,7 +13,7 @@ final class ShareholderDetailsViewControllerTests: QuickSpec {
         beforeEach {
             interactorMock = .init()
             contentViewMock = .init()
-            viewController = .init(interactor: interactorMock)
+            viewController = .init(interactor: interactorMock, uid: TestData.PresentShareholderDetails.uid)
         }
         
         describe(".loadView") {
@@ -25,6 +25,29 @@ final class ShareholderDetailsViewControllerTests: QuickSpec {
                 expect(viewController.view.backgroundColor).to(equal(TestData.contentViewBackgroundColor))
             }
         }
+        
+        describe(".viewDidLoad") {
+            it("should call interactor for fetch shareholder details") {
+                // when
+                viewController.loadViewIfNeeded()
+                // then
+                expect(interactorMock.fetchShareholderDetailsWasCalled).to(beCalledOnce())
+                expect(interactorMock.fetchShareholderDetailsReceivedRequest)
+                    .to(equal(TestData.PresentShareholderDetails.request))
+            }
+        }
+        
+        describe(".displayShareholderDetails") {
+            it("should configure view") {
+                // when
+                viewController.contentView = contentViewMock
+                viewController.displayShareholderDetails(TestData.PresentShareholderDetails.viewModel)
+                // then
+                expect(contentViewMock.configureWasCalled).to(beCalledOnce())
+                expect(contentViewMock.configureReceivedRequest)
+                    .to(equal(TestData.PresentShareholderDetails.viewModel))
+            }
+        }
     }
 }
 
@@ -34,5 +57,14 @@ private extension ShareholderDetailsViewControllerTests {
     enum TestData {
         static let contentViewBackgroundColor = appearance.palette.backgroundPrimary
         static let appearance = Appearance(); struct Appearance: Theme { }
+        
+        enum PresentShareholderDetails {
+            static let uid = Shareholder.Seeds.value.id
+            static let cellViewModel = ShareholderCellViewModel.Seeds.value
+            static let request = ShareholderDetailsDataFlow.PresentShareholderDetails.Request(uid: uid)
+            static let viewModel = ShareholderDetailsDataFlow.PresentShareholderDetails.ViewModel(
+                shareholderDetails: cellViewModel
+            )
+        }
     }
 }

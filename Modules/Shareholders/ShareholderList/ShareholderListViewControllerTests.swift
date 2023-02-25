@@ -83,8 +83,8 @@ final class ShareholderListViewControllerTests: QuickSpec {
 private extension ShareholderListViewControllerTests {
     enum TestData: Theme {
         static let contentViewBackgroundColor = Palette.backgroundPrimary
-        static let cellViewModel = ShareholderListCellViewModel.Seeds.value
-        static let unknownCompanyCellViewModel = ShareholderListCellViewModel.Seeds.valueCompanyUnknown
+        static let cellViewModel = ShareholderCellViewModel.Seeds.value
+        static let unknownCompanyCellViewModel = ShareholderCellViewModel.Seeds.valueCompanyUnknown
         
         enum PresentShareholderList {
             static let shareholderListCellViewModels = [

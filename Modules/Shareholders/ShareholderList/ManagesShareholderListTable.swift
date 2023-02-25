@@ -8,13 +8,13 @@ protocol ShareholderListTableManagerDelegate: AnyObject {
 }
 
 protocol ShareholderListTableManagerProtocol: UITableViewDataSource, UITableViewDelegate {
-    var rows: [ShareholderListCellViewModel] { get set }
+    var rows: [ShareholderCellViewModel] { get set }
 }
 
 final class ShareholderListTableManager: NSObject, ShareholderListTableManagerProtocol {
     // MARK: - Properties
     
-    var rows: [ShareholderListCellViewModel] = []
+    var rows: [ShareholderCellViewModel] = []
     weak var delegate: ShareholderListTableManagerDelegate?
     
     // MARK: - Initializer

@@ -9,7 +9,7 @@ enum ShareholderListDataFlow {
         }
         
         struct ViewModel: Equatable {
-            let rows: [ShareholderListCellViewModel]
+            let rows: [ShareholderCellViewModel]
         }
     }
     

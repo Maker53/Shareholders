@@ -11,5 +11,19 @@ final class ShareholderDetailsViewTests: QuickSpec {
         beforeEach {
             view = .init()
         }
+        
+        describe(".init") {
+            it("should setup view") {
+                expect(view.backgroundColor).to(equal(TestData.backgroundColor))
+            }
+        }
+    }
+}
+
+// MARK: - TestData
+
+private extension ShareholderDetailsViewTests {
+    enum TestData: Theme {
+        static let backgroundColor = Palette.backgroundPrimary
     }
 }

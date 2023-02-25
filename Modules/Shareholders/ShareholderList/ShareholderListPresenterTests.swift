@@ -45,15 +45,15 @@ private extension ShareholderListPresenterTests {
         enum PresentShareholderList {
             static let shareholders = ShareholderList.Seeds.values
             static let shareholderListCellViewModels = [
-                ShareholderListCellViewModel.Seeds.value,
-                ShareholderListCellViewModel.Seeds.valueCompanyUnknown
+                ShareholderCellViewModel.Seeds.value,
+                ShareholderCellViewModel.Seeds.valueCompanyUnknown
             ]
             static let response = ShareholderListDataFlow.PresentShareholderList.Response(shareholders: shareholders)
             static let viewModel = ShareholderListDataFlow.PresentShareholderList.ViewModel(rows: shareholderListCellViewModels)
         }
         
         enum PresentShareholderDetails {
-            static let uid = ShareholderListCellViewModel.Seeds.value.uid
+            static let uid = ShareholderCellViewModel.Seeds.value.uid
             static let response = ShareholderListDataFlow.PresentShareholderDetails.Response(uid: uid)
             static let viewModel = ShareholderListDataFlow.PresentShareholderDetails.ViewModel(uid: uid)
         }
