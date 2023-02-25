@@ -25,5 +25,12 @@ extension ShareholderCellViewModel {
             imageSource: .image(.assets.art_logoAlfa_color),
             uid: .init("3")
         )
+        
+        static let swappedValue = ShareholderCellViewModel(
+            name: "Alfabank",
+            phone: "Nikita Petrov",
+            imageSource: .image(.assets.art_logoAlfa_color),
+            uid: .init("1")
+        )
     }
 }

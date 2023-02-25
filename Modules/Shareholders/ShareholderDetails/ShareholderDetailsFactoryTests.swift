@@ -1,15 +1,18 @@
 // Created by Станислав on 16.02.2023.
 
 import AlfaFoundation
+import SharedProtocolsAndModels
 import TestAdditions
 @testable import Shareholders
 
 final class ShareholderDetailsFactoryTests: QuickSpec {
     override func spec() {
+        var featuresSeviceMock: FeaturesServiceMock!
         var factory: ShareholderDetailsFactory<ShareholderDetailsRoutesMock>!
         
         beforeEach {
-            factory = .init()
+            featuresSeviceMock = .init()
+            factory = .init(featureService: featuresSeviceMock)
         }
         // TODO Поправить тесты, когда сделаю rebase с изменениями ветки feature/provider
         describe(".build") {
@@ -22,6 +25,7 @@ final class ShareholderDetailsFactoryTests: QuickSpec {
                 expect(viewController).toNot(beNil())
                 expect(interactor).toNot(beNil())
                 expect(presenter).toNot(beNil())
+                expect(presenter?.featuresService).to(beIdenticalTo(featuresSeviceMock))
             }
             
             it("should set dependencies between module parts") {

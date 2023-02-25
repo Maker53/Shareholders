@@ -1,4 +1,5 @@
 import AlfaFoundation
+import Shareholders
 import TestAdditions
 
 @testable import AlfaOnboarding
@@ -22,6 +23,7 @@ final class ExtraFeaturesTests: QuickSpec {
 private extension ExtraFeaturesTests {
     enum TestData {
         static let extraValues = Set<String>()
+            .union(values(of: ShareholdersFeature.self))
 
         static func values<Flag: FeatureFlag>(of flagType: Flag.Type) -> Set<Flag.RawValue> {
             Set(flagType.allCases.lazy.map(\.rawValue))
