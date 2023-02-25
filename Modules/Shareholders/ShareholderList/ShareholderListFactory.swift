@@ -10,7 +10,7 @@ public struct ShareholderListFactory<Routes: ShareholderListRoutes>: Factory {
     public init() { }
     
     public func build(with context: Context) throws -> ViewController<Routes> {
-        let dataStore = ShareholderListDataStore()
+        let dataStore = ShareholderListDataStore.sharedInstance
         let service = AnyNetworkService(ShareholderListNetworkService())
         let provider = ShareholderListProvider(dataStore: dataStore, service: service)
         
