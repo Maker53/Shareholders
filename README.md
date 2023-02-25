@@ -1,11 +1,22 @@
-# Финальная домашняя работа
-В этой домашней работе закрепляем знания полученные за время обучения
+# Shareholders
 
-### Задание:
-Задание и шаги описаны в Notion на странице https://www.notion.so/00d640ae197c489cafd9160b167c40aa.
+The application was created as part of studying at Alfa Campus (Alfa Bank).
+The project implemented the shareholder module using cocoapods.
 
-|   |   |
-|-|-|
-|__Срок выполнения__| 01.03.2023 |
-| __Название лейбла__ | Onboarding |
-| __Цвет лейбла__ | #cd1501 |
+## Installation
+
+Open the main directory in the terminal and run the following command.
+After installing the necessary dependencies, open AlfaOnboarding.xcworkspace.
+
+```
+bundle
+bundle exec pod install
+```
+## Technologies
+
+- UIKit + SnapKit
+- [YARCH](https://github.com/alfa-laboratory/YARCH.git) (Clean Swift)
+- RouteComposer(https://github.com/ekazaev/route-composer.git)
+- Cocoapods
+- Unit tests (Quick + Nimble)
+- Snapshots tests
