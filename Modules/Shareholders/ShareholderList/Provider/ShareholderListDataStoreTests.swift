@@ -8,7 +8,7 @@ final class ShareholderListDataStoreTests: QuickSpec {
         var dataStore: ShareholderListDataStore!
         
         beforeEach {
-            dataStore = ShareholderListDataStore()
+            dataStore = .sharedInstance
         }
         
         describe(".purge") {
