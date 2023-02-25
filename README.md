@@ -16,7 +16,7 @@ bundle exec pod install
 
 - UIKit + SnapKit
 - [YARCH](https://github.com/alfa-laboratory/YARCH.git) (Clean Swift)
-- RouteComposer(https://github.com/ekazaev/route-composer.git)
+- [RouteComposer](https://github.com/ekazaev/route-composer.git)
 - Cocoapods
 - Unit tests (Quick + Nimble)
 - Snapshots tests
