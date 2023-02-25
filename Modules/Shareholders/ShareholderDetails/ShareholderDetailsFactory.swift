@@ -17,8 +17,7 @@ public struct ShareholderDetailsFactory<Routes: ShareholderDetailsRoutes>: Facto
     }
     
     public func build(with context: Context) throws -> ViewController<Routes> {
-        // TODO Датастор будет синглтоном, поправить после rebase
-        let provider = ShareholderDetailsProvider(dataStore: ShareholderListDataStore())
+        let provider = ShareholderDetailsProvider(dataStore: ShareholderListDataStore.sharedInstance)
         
         let presenter = ShareholderDetailsPresenter(featureService: featureService)
         let interactor = ShareholderDetailsInteractor(presenter: presenter, provider: provider)

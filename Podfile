@@ -64,7 +64,6 @@ def dependencies_fun
   dependency('Tabman')
   dependency('ResultScreen')
   dependency('OperationConfirmation')
-
 end
 
 def tests_dependencies
@@ -85,8 +84,6 @@ def all_tests
 end
 
 def features
-  local_module('Installments')
-  local_module('CardReissue')
   local_module('Shareholders')
 end
 
