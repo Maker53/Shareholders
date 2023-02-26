@@ -14,7 +14,7 @@ final class ShareholderDetailsFactoryTests: QuickSpec {
             featuresSeviceMock = .init()
             factory = .init(featureService: featuresSeviceMock)
         }
-        // TODO Поправить тесты, когда сделаю rebase с изменениями ветки feature/provider
+        
         describe(".build") {
             it("should build module parts") {
                 // when
